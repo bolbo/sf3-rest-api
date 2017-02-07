@@ -1,6 +1,6 @@
 <?php
 /**
- * PlaceRepository.php
+ * PriceRepository.php
  *
  * PHP version 7
  *
@@ -14,10 +14,10 @@
 namespace AppBundle\Repository;
 
 
-use Component\Model\Application\PublicSchema\Place;
+use Component\Model\Application\PublicSchema\Price;
 use PommProject\Foundation\Pomm;
 
-class PlaceRepository extends BaseRepository
+class PriceRepository extends BaseRepository
 {
     /**
      * LeadRepository constructor.
@@ -36,7 +36,7 @@ class PlaceRepository extends BaseRepository
     /**
      * Utilisé pour l'autocompletion de l'IDE
      *
-     * @return \Component\Model\Application\PublicSchema\PlaceModel
+     * @return \Component\Model\Application\PublicSchema\PriceModel
      */
     public function getPommModel()
     {
@@ -51,10 +51,9 @@ class PlaceRepository extends BaseRepository
         return $this->getPommModel()->findAll();
     }
 
-    public function find($placeId)
+    public function find($priceId)
     {
-        // @todo lbolzer a traiter via findwithdetails
-        return $this->getPommModel()->findByPK(['id' => (int)$placeId]);
+        return $this->getPommModel()->findByPK(['id' => (int)$priceId]);
     }
 
     /**
@@ -63,20 +62,20 @@ class PlaceRepository extends BaseRepository
      */
     public function insert(array $data)
     {
-        /** @var Place $lead */
+        /** @var Price $lead */
         $lead = $this->getPommModel()->createAndSave($data);
 
         return $this->find($lead->getId());
     }
 
-    public function delete(int $placeId)
+    public function delete(int $priceId)
     {
-        $this->getPommModel()->deleteByPK(['id' => $placeId]);
+        $this->getPommModel()->deleteByPK(['id' => $priceId]);
     }
 
-    public function update($placeId, array $data)
+    public function update($priceId, array $data)
     {
-        return $this->getPommModel()->updateByPk(["id" => $placeId], $data);
+        return $this->getPommModel()->updateByPk(["id" => $priceId], $data);
 
     }
 

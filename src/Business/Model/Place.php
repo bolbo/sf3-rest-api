@@ -14,6 +14,8 @@
 namespace Business\Model;
 
 
+use Doctrine\Common\Collections\ArrayCollection;
+
 class Place
 {
     /**
@@ -24,10 +26,16 @@ class Place
 
     private $address;
 
+    /**
+     * @var Price[]
+     */
+    private $prices;
+
     public function __construct(array $data)
     {
         $this->name    = $data['name']??'';
         $this->address = $data['address']??'';
+        $this->prices  = new ArrayCollection();
     }
 
 
@@ -83,6 +91,22 @@ class Place
     {
         $this->address = $address;
         return $this;
+    }
+
+    /**
+     * @return Price[]
+     */
+    public function getPrices()
+    {
+        return $this->prices;
+    }
+
+    /**
+     * @param Price[] $prices
+     */
+    public function setPrices($prices)
+    {
+        $this->prices = $prices;
     }
 
 

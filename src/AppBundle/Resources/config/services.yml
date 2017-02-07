@@ -12,5 +12,11 @@ services:
             - \Component\Model\Application\PublicSchema\AccountModel
             - '@pomm'
 
+    price.repository:
+        class: AppBundle\Repository\PriceRepository
+        arguments:
+            - \Component\Model\Application\PublicSchema\PriceModel
+            - '@pomm'
+
 
 

@@ -11,3 +11,11 @@ CREATE TABLE account (
   email     CHARACTER VARYING(64) NOT NULL UNIQUE
 );
 
+
+CREATE TABLE price (
+  id    SERIAL PRIMARY KEY,
+  place_id INTEGER not null REFERENCES place(id),
+  type  CHARACTER VARYING(64),
+  value FLOAT
+);
+
