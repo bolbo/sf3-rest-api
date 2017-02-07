@@ -1,0 +1,26 @@
+Business\Model\Place:
+    properties:
+        name:
+            - NotBlank: ~
+            - Type: string
+            - Length:
+                min: 2
+                max: 50
+                minMessage: 'Your first name must be at least {{ limit }} characters long'
+                maxMessage: 'Your first name cannot be longer than {{ limit }} characters'
+        address:
+            - NotBlank: ~
+            - Type: string
+
+
+Business\Model\Account:
+    properties:
+        firstname:
+            - NotBlank: ~
+            - Type: string
+        lastname:
+            - NotBlank: ~
+            - Type: string
+        email:
+            - NotBlank: ~
+            - Email: ~

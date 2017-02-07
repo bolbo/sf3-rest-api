@@ -1,0 +1,42 @@
+place.list:
+    path:     /places
+    methods: [GET]
+    defaults: { _controller: AppBundle:Place:getPlaces }
+
+place.detail:
+    path:     /places/{placeId}
+    methods: [GET]
+    defaults: { _controller: AppBundle:Place:getPlace }
+    requirements:
+        placeId: \d+
+
+place.delete:
+    path:     /places/{placeId}
+    methods:
+        - DELETE
+    defaults: { _controller: AppBundle:Place:deletePlace }
+    requirements:
+        placeId: \d+
+
+
+
+account.list:
+    path:     /accounts
+    methods: [GET]
+    defaults: { _controller: AppBundle:Account:getAccounts }
+
+account.detail:
+    path:     /accounts/{accountId}
+    methods: [GET]
+    defaults: { _controller: AppBundle:Account:getAccount }
+    requirements:
+        accountId: \d+
+
+
+account.delete:
+    path:     /accounts/{accountId}
+    methods:
+        - DELETE
+    defaults: { _controller: AppBundle:Account:deleteAccount }
+    requirements:
+        accountId: \d+

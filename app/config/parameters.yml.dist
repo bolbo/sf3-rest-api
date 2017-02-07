@@ -1,0 +1,14 @@
+# This file is auto-generated during the composer install
+parameters:
+    locale: fr
+    db_host1:
+    db_port1:
+    db_name1:
+    db_user1:
+    db_password1:
+    database_connexion: application
+    secret: secret
+    mailer_transport: smtp
+    mailer_host: 127.0.0.1
+    mailer_user: null
+    mailer_password: null

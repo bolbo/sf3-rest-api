@@ -1,0 +1,11 @@
+#app:
+#    resource: "@AppBundle/Resources/config/routing.yml"
+#    prefix:   /
+
+
+places:
+    type:     rest
+    resource: AppBundle\Controller\PlaceController
+accounts:
+    type:     rest
+    resource: AppBundle\Controller\AccountController

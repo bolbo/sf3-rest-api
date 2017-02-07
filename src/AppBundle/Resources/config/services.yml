@@ -1,0 +1,16 @@
+services:
+
+    place.repository:
+        class: AppBundle\Repository\PlaceRepository
+        arguments:
+            - \Component\Model\Application\PublicSchema\PlaceModel
+            - '@pomm'
+
+    account.repository:
+        class: AppBundle\Repository\AccountRepository
+        arguments:
+            - \Component\Model\Application\PublicSchema\AccountModel
+            - '@pomm'
+
+
+
