@@ -41,7 +41,6 @@ class PlaceController extends Controller
         /** @var PlaceRepository $repository */
         $repository = $this->get('place.repository');
         $place      = $repository->find($placeId);
-
         if (null == $place) {
             return View::create(['message' => 'Place ' . $placeId . ' not found'], Response::HTTP_NOT_FOUND);
         }

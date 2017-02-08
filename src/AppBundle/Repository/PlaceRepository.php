@@ -16,6 +16,7 @@ namespace AppBundle\Repository;
 
 use Component\Model\Application\PublicSchema\Place;
 use PommProject\Foundation\Pomm;
+use PommProject\Foundation\Where;
 
 class PlaceRepository extends BaseRepository
 {
@@ -51,10 +52,14 @@ class PlaceRepository extends BaseRepository
         return $this->getPommModel()->findAll();
     }
 
-    public function find($placeId)
+    public function find(int $placeId)
     {
-        // @todo lbolzer a traiter via findwithdetails
-        return $this->getPommModel()->findByPK(['id' => (int)$placeId]);
+        $where  = $this->addCriteria(new Where(), 'place.id = $*::int4 ', $placeId);
+        $result = $this->getPommModel()->findOneWithDetails($where);
+        if (0 == $result->count()) {
+            return null;
+        }
+        return $result->get(0);
     }
 
     /**

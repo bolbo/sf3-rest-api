@@ -31,7 +31,40 @@ class PlaceModel extends Model
      */
     public function __construct()
     {
-        $this->structure = new PlaceStructure;
+        $this->structure             = new PlaceStructure;
         $this->flexible_entity_class = '\Component\Model\Application\PublicSchema\Place';
+    }
+
+    public function findOneWithDetails(Where $where)
+    {
+        $sql        = <<<SQL
+select
+    :projection
+from
+    :place place
+left join :price price ON place.id = price.place_id
+where :condition
+GROUP BY place.id
+LIMIT 1
+SQL;
+        $projection = $this
+            ->createProjection()
+            ->setField('prices', 'array_agg(price)', '\Component\Model\Application\PublicSchema\Price[]');
+
+        $sql    = strtr($sql,
+            [
+                ':projection' => $projection->formatFieldsWithFieldAlias('place'),
+                ':place'      => $this->getStructure()->getRelation(),
+                ':price'      => $this
+                    ->getSession()
+                    ->getModel('\Component\Model\Application\PublicSchema\PriceModel')
+                    ->getStructure()
+                    ->getRelation(),
+                ':condition'  => $where,
+            ]
+        );
+        $result = $this->query($sql, $where->getValues(), $projection);
+
+        return $result;
     }
 }
